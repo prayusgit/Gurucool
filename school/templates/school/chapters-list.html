@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h4 class="display-4 mb-3 text-center">Chapters of grade {{ grade.name|capfirst }} Physics.</h4></b>
+    {% for chapter in chapters %}
+        <a href="{% url 'school:numericals-list' grade.name chapter.name %}"
+           class="btn btn-outline-success btn-block">{{ forloop.counter }}. {{ chapter.name }}</a>
+    {% endfor %}
+{% endblock %}

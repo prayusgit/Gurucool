@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user_books %}
+        <h4 class="display-4">Your book reviews.</h4>
+        <div class="row">
+            {% for book in user_books %}
+                {% include 'library/book.html' with book=book user_book=True %}
+            {% endfor %}
+        </div>
+    {% else %}
+        <h4 class="display-4">Sorry, you don't have any review.</h4>
+    {% endif %}
+{% endblock %}

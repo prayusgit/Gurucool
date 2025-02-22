@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="card bg-light">
+        <div class="card-body">
+            <form method="POST" action=".">{% csrf_token %}
+                {% if label %}
+                    <p class="lead">Are you sure you want to delete review for {{ book.name }}?</p>
+                {% else %}
+                    {{ form.as_p }}
+                {% endif %}
+                <button class="btn btn-primary">{% if label %}Yes, Sure{% else %}
+                    Submit{% endif %}</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if is_admin %}
+        <a href="{% url 'school:numerical-create' grade.name chapter.name %}"
+           class="btn btn-block btn-outline-warning mb-3">Add
+            a numercial</a>
+    {% endif %}
+    <p class="lead">Numericals for {{ chapter.name }}</p>
+    <div class="row">
+        {% for numerical in numericals %}
+            {% include 'school/numerical.html' with is_admin=is_admin numerical=numerical chapter=chapter grade=grade counter=forloop.counter %}
+        {% endfor %}
+    </div>
+
+{% endblock %}

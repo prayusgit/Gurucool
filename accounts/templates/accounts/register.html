@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h4 class="display-4 mb-3">Registration Form</h4>
+    <div class="card bg-light">
+        <div class="card-body">
+            <form method="POST" class="mb-3">{% csrf_token %}
+                {% for field in form %}
+                    {% if field.errors %}{{ field.errors }}{% endif %}
+                    <p class="mb-3">{{ field.label }}: {{ field }}</p>
+                {% endfor %}
+                <button class="btn btn-primary">Register</button>
+            </form>
+        <a class='card-link' href="{% url 'accounts:login' %}">Go to login page.</a>
+        </div>
+    </div>
+{% endblock %}

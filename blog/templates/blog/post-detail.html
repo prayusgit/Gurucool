@@ -1,0 +1,6 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% include 'blog/post.html' with show_view=False show_edit=show_edit %}
+<a href="{% url 'blog:blog-view' %}" class="card-link">Go back to blog page.</a>
+{% endblock %}

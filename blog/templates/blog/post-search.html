@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if search_query %}
+        <p class="lead">You searched for: {{ search_query }}</p>
+        {% if posts %}
+        {% for post in posts %}
+            {% include 'blog/post.html' with post=post %}
+        {% endfor %}
+            {% else %}
+            <p class="lead">There is no post related to {{ search_query }}</p>
+            {% include 'blog/post-search-form.html' %}
+            {% endif %}
+    {% else %}
+        <p class="lead">You didn't search anything.Search Again!!</p>
+        {% include 'blog/post-search-form.html' %}
+    {% endif %}
+    <a href="{% url 'blog:blog-view' %}">Go to Blog page.</a>
+
+{% endblock %}

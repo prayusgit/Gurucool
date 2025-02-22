@@ -1,0 +1,15 @@
+<div class="card mb-3">
+    <div class="card-body">
+        <small class="text-muted">{{ post.timestamp }}</small>
+        <h5 class="card-title">{{ post.title }}</h5>
+        <p class="card-text">
+            {% if not show_view %}{{ post.content }}{% else %}{{ post.content|truncatewords:50 }}{% endif %}</p>
+        {% if show_view %}<a href="{% url 'blog:post-detail' post.id %}" class="card-link">View</a>{% endif %}
+        {% if request.user.is_authenticated %}
+            {% if is_admin %}
+                <a href="{% url 'blog:post-edit' post.id %}" class="card-link">Edit</a>
+                <a href="{% url 'blog:post-delete' post.id %}" class="card-link">Delete</a>
+            {% endif %}
+        {% endif %}
+    </div>
+</div>

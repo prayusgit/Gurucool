@@ -1,0 +1,29 @@
+<div class="col-md-6 mx-auto mb-3">
+    <div class="card">
+        <div class="card-body">
+            {% if request.user == book.user %}
+                <small class="text-muted">My review</small>
+            {% else %}
+                <small class="text-muted">Review by @{{ book.user.username }}</small>
+            {% endif %}
+            <br>
+            <small class="text-muted">Reviewed in {{ book.timestamp }}</small>
+            <h5 class="card-title">{{ book.name }}</h5>
+            <p class="card-text">{% if not show_view %}{{ book.review }}{% else %}{{ book.review | truncatewords:30 }}{% endif %}</p>
+            {% if show_view %}
+                <a href="{% url 'library:book-detail' book.id %}" class="card-link">View</a>
+            {% endif %}
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><b>Author:</b> {{ book.author }}</li>
+            <li class="list-group-item"><b>Genre:</b> {{ book.genre }}</li>
+            <li class="list-group-item"><b>Rating:</b> {{ book.rating }}/5</li>
+        </ul>
+        <div class="card-body">
+            {% if user_book %}
+                <a href="{% url 'library:book-edit' book.id %}" class="card-link">Edit</a>
+                <a href="{% url 'library:book-delete' book.id %}" class="card-link">Delete</a>
+            {% endif %}
+        </div>
+    </div>
+</div>

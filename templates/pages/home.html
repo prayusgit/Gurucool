@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="jumbotron">
+        <h1 class="display-4">Welcome to GuruCool</h1>
+        <p class="lead">Here you can learn many things.</p>
+        <hr class="my-4">
+        <p>If you are a +2 science student we highly recommend to go to School page. There we provide numerical
+            solutions which may be helpful for you.</p>
+        <a class="btn btn-primary btn-lg" href="{% url 'school:school-view' %}">Go to School</a>
+    </div>
+    <div class="row ">
+        <p class="col-12 lead text-center">Go to:</p>
+        <div class="col-12 btn-group mb-4">
+            <a class='btn  btn-outline-success' href="{% url 'library:library-view' %}">Library</a>
+            <a class='btn btn-outline-primary' href="{% url 'school:school-view' %}">School</a>
+            <a class='btn btn-outline-secondary' href="{% url 'blog:blog-view' %}">Blog</a>
+            <a class='btn btn-outline-danger' href="{% url 'accounts:login' %}">Login Page</a>
+        </div>
+        <p class="col-12 lead">Our latest blog posts:</p>
+        <div class="container-fluid">
+            {% for blog_post in blog_posts %}
+                {% include 'blog/post.html' with post=blog_post show_view=True %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

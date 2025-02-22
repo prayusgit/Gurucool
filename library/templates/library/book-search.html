@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if search_query %}
+        <p class="lead">You searched for: {{ search_query }}</p>
+        {% if books %}
+            <div class="row">
+                {% for book in books %}
+                    {% include 'library/book.html' with book=book %}
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="lead">There is no review for {{ search_query }}.Search Again.</p>
+            {% include 'library/book-search-form.html' %}
+        {% endif %}
+
+    {% else %}
+        <p class="lead">You didn't search anything.</p>
+        {% include 'library/book-search-form.html' %}
+    {% endif %}
+    <a class="mb-3" href="{% url 'library:library-view' %}">Go to library page.</a>
+{% endblock %}

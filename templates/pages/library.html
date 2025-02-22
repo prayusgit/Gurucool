@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="text-center mb-3">
+        <p class="lead">Wanna review a book??</p>
+        <a href="{% url 'library:book-create' %}" class="btn btn-outline-primary">Click here</a>
+    </div>
+    {% include 'library/book-search-form.html' %}
+    <a class=' mb-3 btn btn-outline-warning btn-block' href="{% url 'library:user-books' %}">Click me to see your
+        reviews.</a>
+    <div class="row">
+        {% for book in books %}
+            {% if book in user_books %}
+                {% include 'library/book.html' with book=book user_book=True show_view=True %}
+            {% else %}
+                {% include 'library/book.html' with book=book user_book=False show_view=True %}
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

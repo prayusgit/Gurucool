@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="row">
+        {% if book in user_books %}
+            {% include 'library/book.html' with show_view=False user_book=True %}
+        {% else %}
+            {% include 'library/book.html' with show_view=False user_book=False %}
+        {% endif %}
+    </div>
+    <a href="{% url 'library:library-view' %}" class="card-link">Go back to library page.</a>
+
+{% endblock %}

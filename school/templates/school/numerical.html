@@ -1,0 +1,15 @@
+<div class="col-md-6 mx-auto mb-3">
+    <div class="card">
+        <div class="card-body">
+            <b><p class="card-title">{{ counter }}. {{ numerical.question }}</p></b>
+            <small class="card-subtitle mb-2 text-muted">Solution:</small>
+            <p class="card-text">{{ numerical.content|linebreaks }}</p>
+            {% if is_admin %}
+                <a href="{% url 'school:numerical-edit' grade.name chapter.name numerical.id %}"
+                   class="card-link">Edit</a>
+                <a href="{% url 'school:numerical-delete' grade.name chapter.name numerical.id %}"
+                   class="card-link">Delete</a>
+            {% endif %}
+        </div>
+    </div>
+</div>

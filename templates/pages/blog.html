@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="mb-3">
+
+        <h4 class="display-4">Welcome to our blog.</h4>
+        {% if is_admin %}
+            <small class="lead">To create a post.</small>
+            <a href="{% url 'blog:post-create' %}" class="btn btn-primary btn-sm">Click here</a>
+        {% endif %}
+    </div>
+    {% include 'blog/post-search-form.html' %}
+    {% for post in posts %}
+        {% include 'blog/post.html' with post=post is_admin=is_admin show_view=True %}
+    {% endfor %}
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="col text-center">
+        <p class="lead">In which class you are in??</p>
+        {% for grade in grades %}
+            <a href="{% url 'school:chapters-list' grade.name %}"
+               class="btn btn-outline-primary btn-lg mb-5">{{ grade.name|capfirst }}</a><br>
+        {% endfor %}
+    </div>
+{% endblock %}
